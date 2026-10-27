@@ -1,0 +1,23 @@
+# Jekyll生成ファイル
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Bundler
+.bundle/
+vendor/
+
+# WordPressバックアップ
+**/backwpup/
+**/backups/
+**/backwpup-restore/
+**/backwpup-restore-*/
+**/backwpup-*/
+*.sql
+*.tar
+*.tar.gz
+*.zip
+
+# macOS
+.DS_Store

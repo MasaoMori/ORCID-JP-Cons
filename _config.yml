@@ -1,0 +1,8 @@
+title: "ORCID日本コンソーシアム"
+description: "ORCID日本コンソーシアム公式サイト"
+url: "https://orcid-jp.net"
+baseurl: ""
+
+theme: minima
+
+markdown: kramdown
