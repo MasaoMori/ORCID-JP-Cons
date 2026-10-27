@@ -1,7 +1,7 @@
-title: "ORCID日本コンソーシアム"
-description: "ORCID日本コンソーシアム公式サイト"
-url: "https://orcid-jp.net"
-baseurl: ""
+title: "ORCID日本コンソーシアム（テスト）"
+description: "ORCID日本コンソーシアム公式サイト（テスト）"
+url: "https://masaomori.github.io"
+baseurl: "/ORCID-JP-Cons"
 
 theme: minima
 
