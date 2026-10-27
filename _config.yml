@@ -2,7 +2,47 @@ title: "ORCID日本コンソーシアム（テスト）"
 description: "ORCID日本コンソーシアム公式サイト（テスト）"
 url: "https://masaomori.github.io"
 baseurl: "/ORCID-JP-Cons"
-
-theme: minima
-
+lang: ja
+timezone: Asia/Tokyo
 markdown: kramdown
+# theme: minima を削除し、同梱のローカルレイアウトを使用します。
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+# 既存ページの permalink は変更しません。
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+      sidebar: true
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+accelerate:
+  # boxed / wide
+  width: boxed
+  # 空欄なら文字のサイト名だけを表示します。パスには baseurl を含めません。
+  logo: ""
+  logo_alt: "ORCID日本コンソーシアム"
+  header_image: ""
+  header_image_alt: ""
+  sidebar: true
+  sidebar_title: "サイト案内"
+  sidebar_text: ""
+  footer_text: ""
+  show_post_dates: true
+  home_posts_limit: 10
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - node_modules
+  - .bundle
+  - tools
+  - docs

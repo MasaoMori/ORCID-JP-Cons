@@ -1,0 +1,15 @@
+Accelerate WordPress Theme, version 1.6.0
+Copyright 2014 ThemeGrill. GNU GPL version 2 or later.
+https://themegrill.com/themes/accelerate/
+Original CSS, Font Awesome and image assets are retained from the supplied accelerate.zip.
+The original readme and its third-party licensing notices are included unchanged.
+
+Jekyll adaptation: layouts, includes, CSS additions and JavaScript, 2026.
+Distributed under GNU GPL version 2 or later, without warranty.
+The editable files in site/ are the preferred source form of the adaptation.
+GPL text: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+
+Font Awesome files retain their upstream license headers. See the original readme.
+The ThemeGrill/Accelerate images are theme brand assets, not ORCID consortium logos.
+They are supplied for provenance and are not displayed by default.
+No ORCID logo or WordPress site-specific image was included in the supplied files.

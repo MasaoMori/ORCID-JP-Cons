@@ -1,0 +1,8 @@
+{%- assign target = include.url | default: '/' -%}
+{%- assign first = target | slice: 0, 1 -%}
+{%- assign pair = target | slice: 0, 2 -%}
+{%- if target contains '://' or pair == '//' or first == '#' or target contains 'mailto:' or target contains 'tel:' or target contains 'data:' -%}
+  {{- target -}}
+{%- else -%}
+  {{- target | relative_url -}}
+{%- endif -%}

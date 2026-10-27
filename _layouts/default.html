@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'ja' }}">
+<head>{% include head.html %}</head>
+{% assign use_sidebar = true %}
+{% if site.accelerate.sidebar == false or page.sidebar == false %}{% assign use_sidebar = false %}{% endif %}
+<body class="{% if site.accelerate.width == 'wide' %}wide{% else %}boxed{% endif %} {% if use_sidebar %}right-sidebar{% else %}no-sidebar-full-width{% endif %}">
+<div id="page" class="hfeed site">
+  <a class="skip-link screen-reader-text" href="#main">本文へ移動</a>
+  {% include header.html %}
+  <main id="main" class="clearfix" tabindex="-1">
+    <div class="inner-wrap clearfix">
+      <div id="primary"><div id="content" class="clearfix">{{ content }}</div></div>
+      {% if use_sidebar %}{% include sidebar.html %}{% endif %}
+    </div>
+  </main>
+  {% include footer.html %}
+</div>
+</body>
+</html>

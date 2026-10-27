@@ -1,0 +1,7 @@
+---
+layout: default
+---
+<article class="page hentry">
+  {% unless page.hide_title %}<header class="entry-header"><h1 class="entry-title">{{ page.title | escape }}</h1></header>{% endunless %}
+  <div class="entry-content clearfix">{% include content.html html=content %}</div>
+</article>

@@ -1,0 +1,15 @@
+---
+layout: page
+---
+{{ content }}
+<section class="home-posts" aria-labelledby="news-title">
+  <h2 id="news-title">お知らせ</h2>
+  {% assign posts_limit = site.accelerate.home_posts_limit | default: 10 %}
+  {% for post in site.posts limit:posts_limit %}
+  <article class="news-item">
+    {% if site.accelerate.show_post_dates != false %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y年%m月%d日' }}</time>{% endif %}
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+    <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
+  </article>
+  {% else %}<p class="empty-news">お知らせはまだありません。</p>{% endfor %}
+</section>

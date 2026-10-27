@@ -1,0 +1,3 @@
+{% for item in include.items %}
+<li><a href="{% include url.html url=item.url %}">{{ item.title | escape }}</a>{% if item.children.size > 0 %}<ul>{% include sidebar-items.html items=item.children %}</ul>{% endif %}</li>
+{% endfor %}

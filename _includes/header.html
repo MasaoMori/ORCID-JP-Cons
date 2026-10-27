@@ -1,0 +1,26 @@
+<header id="masthead" class="site-header clearfix">
+  <div id="header-text-nav-container" class="clearfix">
+    <div class="inner-wrap">
+      <div id="header-text-nav-wrap" class="clearfix">
+        <div id="header-left-section">
+          {% if site.accelerate.logo and site.accelerate.logo != '' %}
+          <div id="header-logo-image"><a href="{{ '/' | relative_url }}"><img src="{% include url.html url=site.accelerate.logo %}" alt="{{ site.accelerate.logo_alt | escape }}"></a></div>
+          {% endif %}
+          <div id="header-text">
+            <p id="site-title"><a href="{{ '/' | relative_url }}" rel="home">{{ site.title | escape }}</a></p>
+            <p id="site-description">{{ site.description | escape }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if site.accelerate.header_image and site.accelerate.header_image != '' %}
+    <img class="header-image" src="{% include url.html url=site.accelerate.header_image %}" alt="{{ site.accelerate.header_image_alt | escape }}">
+    {% endif %}
+    <nav id="site-navigation" class="main-navigation inner-wrap clearfix" aria-label="メインメニュー">
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">メニュー</button>
+      <ul id="primary-menu" class="nav-menu">
+        {% if site.data.navigation.primary.size > 0 %}{% include navigation-items.html items=site.data.navigation.primary %}{% else %}{% include auto-navigation.html %}{% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>

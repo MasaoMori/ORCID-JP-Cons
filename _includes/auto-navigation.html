@@ -1,0 +1,7 @@
+<li{% if page.url == '/' %} class="current-menu-item"{% endif %}><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>ホーム</a></li>
+{% assign nav_pages = site.pages | sort: 'nav_order' %}
+{% for nav_page in nav_pages %}
+  {% if nav_page.title and nav_page.nav_exclude != true and nav_page.url != '/' and nav_page.url != '/404.html' %}
+  <li{% if page.url == nav_page.url %} class="current-menu-item"{% endif %}><a href="{{ nav_page.url | relative_url }}"{% if page.url == nav_page.url %} aria-current="page"{% endif %}>{{ nav_page.nav_title | default: nav_page.title | escape }}</a></li>
+  {% endif %}
+{% endfor %}

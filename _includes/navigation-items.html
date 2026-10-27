@@ -1,0 +1,11 @@
+{% for item in include.items %}
+  {% capture item_url %}{% include url.html url=item.url %}{% endcapture %}
+  {% assign current_url = page.url | relative_url %}
+  <li class="menu-item{% if current_url == item_url %} current-menu-item{% endif %}{% if item.children.size > 0 %} menu-item-has-children{% endif %}">
+    <a href="{{ item_url | escape }}"{% if current_url == item_url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+    {% if item.children.size > 0 %}
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-label="{{ item.title | escape }}のサブメニュー">⌄</button>
+      <ul class="sub-menu">{% include navigation-items.html items=item.children %}</ul>
+    {% endif %}
+  </li>
+{% endfor %}

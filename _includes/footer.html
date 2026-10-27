@@ -1,0 +1,11 @@
+<footer id="colophon" class="clearfix">
+  <div class="footer-socket-wrapper clearfix"><div class="inner-wrap"><div class="footer-socket-area clearfix">
+    <div class="copyright">
+      <p>© {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
+      {% if site.accelerate.footer_text and site.accelerate.footer_text != '' %}<p>{{ site.accelerate.footer_text | escape }}</p>{% endif %}
+      <p class="theme-credit">Theme: <a href="https://themegrill.com/themes/accelerate/">Accelerate</a> by ThemeGrill · Adapted for Jekyll</p>
+    </div>
+    {% if site.data.navigation.footer.size > 0 %}<nav class="footer-menu" aria-label="フッターメニュー"><ul>{% include sidebar-items.html items=site.data.navigation.footer %}</ul></nav>{% endif %}
+  </div></div></div>
+</footer>
+<a href="#masthead" id="scroll-up" aria-label="ページの先頭へ">↑</a>

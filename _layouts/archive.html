@@ -1,0 +1,10 @@
+---
+layout: page
+---
+{{ content }}
+{% assign groups = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+{% for group in groups %}
+<h2>{{ group.name }}年</h2><ul class="archive-list">
+{% for post in group.items %}<li><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m月%d日' }}</time> <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>{% endfor %}
+</ul>
+{% else %}<p>お知らせはまだありません。</p>{% endfor %}

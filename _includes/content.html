@@ -1,0 +1,35 @@
+{%- assign elements = include.html | split: '<' -%}
+{{- elements[0] -}}
+{%- for element in elements offset:1 -%}
+  {%- assign original_tag = element | split: '>' | first -%}
+  {%- assign tag = original_tag -%}
+  {%- assign name = tag | split: ' ' | first | downcase -%}
+  {%- assign allowed = 'a,img,video,audio,source,iframe,link,script' | split: ',' -%}
+  {%- if allowed contains name -%}
+    {%- assign attrs = 'href,src,poster' | split: ',' -%}
+    {%- for attr in attrs -%}
+      {%- assign marker = attr | prepend: ' ' | append: '="/' -%}
+      {%- assign chunks = tag | split: marker -%}
+      {%- capture rewritten -%}
+        {{- chunks[0] -}}
+        {%- for chunk in chunks offset:1 -%}
+          {%- assign tail = chunk | split: '"' | first -%}
+          {%- assign first = tail | slice: 0, 1 -%}
+          {%- assign path = '/' | append: tail -%}
+          {%- assign base_slash = site.baseurl | append: '/' -%}
+          {%- assign prefix = path | slice: 0, base_slash.size -%}
+          {%- assign base_query = site.baseurl | append: '?' -%}
+          {%- assign base_fragment = site.baseurl | append: '#' -%}
+          {%- assign short_prefix = path | slice: 0, base_query.size -%}
+          {{- marker -}}
+          {%- unless first == '/' or path == site.baseurl or prefix == base_slash or short_prefix == base_query or short_prefix == base_fragment -%}
+            {{- site.baseurl | remove_first: '/' -}}{%- if site.baseurl != '' -%}/{%- endif -%}
+          {%- endunless -%}
+          {{- chunk -}}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- assign tag = rewritten -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {{- '<' -}}{{- element | replace_first: original_tag, tag -}}
+{%- endfor -%}

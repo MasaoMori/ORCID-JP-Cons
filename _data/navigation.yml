@@ -1,0 +1,13 @@
+# primary が空のときは、ホームと title を持つページを自動表示します。
+# nav_exclude: true のページは自動表示しません。
+# 手動指定するときは次の例のように変更してください。
+# primary:
+#   - title: ホーム
+#     url: /
+#   - title: コンソーシアムについて
+#     url: /about/
+#     children:
+#       - title: 加入案内
+#         url: /membership/
+primary: []
+footer: []

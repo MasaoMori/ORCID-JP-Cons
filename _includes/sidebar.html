@@ -1,0 +1,15 @@
+<aside id="secondary" aria-label="サイドバー">
+  <section class="widget widget_pages">
+    <h2 class="widget-title">{{ site.accelerate.sidebar_title | default: 'サイト案内' | escape }}</h2>
+    <ul>{% if site.data.navigation.primary.size > 0 %}{% include sidebar-items.html items=site.data.navigation.primary %}{% else %}{% include auto-navigation.html %}{% endif %}</ul>
+  </section>
+  {% if site.posts.size > 0 %}
+  <section class="widget">
+    <h2 class="widget-title">最近のお知らせ</h2>
+    <ul>{% for post in site.posts limit:5 %}<li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+  {% if site.accelerate.sidebar_text and site.accelerate.sidebar_text != '' %}
+  <section class="widget"><div class="textwidget">{{ site.accelerate.sidebar_text | escape | newline_to_br }}</div></section>
+  {% endif %}
+</aside>
