@@ -6,7 +6,7 @@ _site/
 
 # Bundler
 .bundle/
-vendor/
+/vendor/
 
 # WordPressバックアップ
 **/backwpup/
