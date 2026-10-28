@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="コンソーシアムへの加入を検討している機関と、すでに加入している機関のための基本案内です。入会、導入準備、API連携、運用、サポートについて検索できます。">
+  <meta name="color-scheme" content="light">
+  <title>ORCID 機関向けFAQ</title>
+  <style>
+    :root {
+      --orcid: #a6ce39;
+      --orcid-dark: #527c00;
+      --orcid-pale: #f2f8e7;
+      --ink: #17221b;
+      --muted: #58645d;
+      --line: #dfe6e1;
+      --paper: #ffffff;
+      --wash: #f6f8f6;
+      --navy: #183d35;
+      --focus: #1f6feb;
+      --danger: #9e3c2f;
+      --shadow: 0 18px 45px rgba(20, 45, 35, .10);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.25rem; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    a { color: #376100; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 99;
+      left: 1rem;
+      top: -5rem;
+      padding: .6rem 1rem;
+      color: white;
+      background: var(--navy);
+      border-radius: 0 0 8px 8px;
+    }
+    .skip-link:focus { top: 0; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: var(--navy);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -8rem;
+      top: -10rem;
+      width: 32rem;
+      height: 32rem;
+      border: 5rem solid rgba(166, 206, 57, .12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-inner, .page, .footer-inner {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 4.25rem 0 5.4rem;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      margin: 0 0 1rem;
+      color: #eaf4d5;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .id-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      color: var(--navy);
+      background: var(--orcid);
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.15rem, 6vw, 4.6rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin: 1.3rem 0 0;
+      color: #dbe7e2;
+      font-size: clamp(1rem, 2.4vw, 1.22rem);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem 1.3rem;
+      margin-top: 1.6rem;
+      color: #bfcfc8;
+      font-size: .85rem;
+    }
+
+    .page { margin-top: -2.2rem; padding-bottom: 5rem; position: relative; z-index: 2; }
+    .important {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .important-item { background: var(--paper); padding: 1.45rem 1.5rem; }
+    .important-label {
+      display: block;
+      color: var(--orcid-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .important-item strong { display: block; margin-top: .25rem; font-size: 1rem; line-height: 1.5; }
+
+    .toolbox {
+      margin-top: 2rem;
+      padding: 1.4rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .search-wrap { position: relative; }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      translate: 0 -50%;
+      color: var(--muted);
+      font-size: 1.15rem;
+      pointer-events: none;
+    }
+    #faq-search {
+      width: 100%;
+      height: 3.45rem;
+      padding: 0 3.2rem 0 2.8rem;
+      color: var(--ink);
+      background: #fbfcfb;
+      border: 1px solid #bac8c0;
+      border-radius: 12px;
+      font: inherit;
+      font-size: 1rem;
+    }
+    #faq-search::placeholder { color: #707d75; }
+    #clear-search {
+      position: absolute;
+      right: .65rem;
+      top: 50%;
+      translate: 0 -50%;
+      display: none;
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.35rem;
+    }
+    #clear-search:hover { background: #e9eeeb; }
+    .filter-label { margin: 1rem 0 .55rem; color: var(--muted); font-size: .82rem; font-weight: 700; }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .filter {
+      padding: .48rem .82rem;
+      color: #30423a;
+      background: white;
+      border: 1px solid #bdc9c2;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .filter:hover { border-color: var(--orcid-dark); }
+    .filter[aria-pressed="true"] { color: white; background: var(--navy); border-color: var(--navy); }
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 1.15rem 0 .75rem;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .text-button {
+      padding: .2rem;
+      color: #376100;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: .2em;
+    }
+
+    .faq-list { display: grid; gap: .75rem; }
+    details.faq {
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    details.faq[open] { border-color: #aac66a; box-shadow: 0 8px 24px rgba(35, 60, 48, .07); }
+    details.faq[hidden] { display: none; }
+    summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 2rem;
+      align-items: center;
+      gap: .8rem;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { background: #fbfcf8; }
+    .question { min-width: 0; }
+    .category {
+      display: inline-block;
+      margin: 0 0 .22rem;
+      color: var(--orcid-dark);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .question-title { display: block; font-size: 1rem; font-weight: 750; line-height: 1.55; }
+    .toggle {
+      display: grid;
+      place-items: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      color: var(--navy);
+      background: var(--orcid-pale);
+      border-radius: 50%;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .toggle::before { content: "+"; }
+    details[open] .toggle::before { content: "−"; }
+    .answer { padding: .1rem 3.9rem 1.25rem 1.1rem; color: #37463e; }
+    .answer p { margin: .55rem 0; }
+    .answer ul { margin: .45rem 0; padding-left: 1.4rem; }
+    .answer li + li { margin-top: .25rem; }
+    .official-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      margin-top: .35rem;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .official-link::after { content: "↗"; text-decoration: none; }
+    .caution {
+      margin-top: .7rem !important;
+      padding: .68rem .8rem;
+      color: #71352d;
+      background: #fff5f1;
+      border-left: 4px solid #d17462;
+      border-radius: 4px 8px 8px 4px;
+      font-size: .92rem;
+    }
+    .no-results {
+      display: none;
+      padding: 2.3rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px dashed #b8c4bd;
+      border-radius: 14px;
+    }
+    .no-results strong { display: block; margin-bottom: .3rem; color: var(--ink); }
+
+    .help-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+      padding: 1.7rem;
+      color: white;
+      background: var(--navy);
+      border-radius: var(--radius);
+    }
+    .help-panel h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+    .help-panel p { margin: 0; color: #cbd9d3; }
+    .primary-link {
+      display: inline-block;
+      padding: .72rem 1rem;
+      color: #142d26;
+      background: var(--orcid);
+      border-radius: 9px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .primary-link:hover { background: #b5db4c; }
+
+    footer { color: #66736c; background: #edf1ee; border-top: 1px solid var(--line); }
+    .footer-inner { padding: 1.6rem 0 2rem; font-size: .8rem; }
+    .footer-inner p { margin: .2rem 0; }
+
+    @media (max-width: 760px) {
+      .hero-inner { padding: 3rem 0 4.4rem; }
+      .important { grid-template-columns: 1fr; }
+      .important-item { padding: 1.05rem 1.15rem; }
+      .toolbox { padding: 1rem; }
+      .answer { padding-right: 1.1rem; }
+      .help-panel { grid-template-columns: 1fr; }
+      .primary-link { text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .hero { color: black; background: white; border-bottom: 2px solid #222; }
+      .hero-inner { padding: 1rem 0; }
+      .hero-copy, .hero-meta { color: #333; }
+      .id-mark { border: 1px solid #555; }
+      .page { margin-top: 1rem; }
+      .toolbox, .results-bar, .help-panel, .skip-link { display: none !important; }
+      .important { box-shadow: none; }
+      details.faq { break-inside: avoid; }
+      details.faq:not([open]) > .answer { display: block; }
+      .toggle { display: none; }
+      .official-link::after { content: " (" attr(href) ")"; font-weight: 400; }
+    }
+  .audience-nav{display:flex;flex-wrap:wrap;gap:1rem;margin:1.4rem 0 0}.audience-nav a{color:#fff}.answer{overflow-wrap:anywhere}[hidden]{display:none!important}@media print{.audience-nav{display:none!important}.faq[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#faq-area">FAQへ移動</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="id-mark" aria-hidden="true">iD</span> Consortium institution guide</p>
+      <h1>ORCID<br>機関向けFAQ</h1>
+      <p class="hero-copy">コンソーシアムへの加入を検討している機関と、すでに加入している機関のための基本案内です。入会、導入準備、API連携、運用、サポートについて検索できます。</p>
+      <div class="hero-meta">
+        <span>対象：加入検討中・加入済みの機関</span>
+        <span>全30問</span>
+        <span>再作成：2026年10月27日</span>
+      </div>
+<p class="audience-nav"><a href="orcid-individual-faq-ja.html">個人向けFAQを見る →</a> <a href="index.html">FAQトップ</a></p>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+    <section class="important" aria-label="導入前に確認したい3点"><div class="important-item"><span class="important-label">目的を決める</span><strong>まず、所属付与・認証済みiD収集など、機関として実現したい目的を整理します。</strong></div><div class="important-item"><span class="important-label">本人の許可を得る</span><strong>研究者レコードの読取り・更新には、原則として本人の許可が必要です。</strong></div><div class="important-item"><span class="important-label">支援を活用する</span><strong>コンソーシアム窓口の導入支援と、参加機関の知見を活用できます。</strong></div></section>
+
+    <section class="toolbox" aria-label="FAQの検索と絞り込み">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label for="faq-search" class="visually-hidden">FAQを検索</label>
+        <input id="faq-search" type="search" placeholder="例：入会、費用、API、Affiliation Manager" autocomplete="off">
+        <button id="clear-search" type="button" aria-label="検索語を消去">×</button>
+      </div>
+      <p class="filter-label">カテゴリで絞り込む</p>
+      <nav class="filters" aria-label="FAQカテゴリ"><button class="filter" type="button" data-filter="all" aria-pressed="true">すべて</button><button class="filter" type="button" data-filter="joining" aria-pressed="false">入会検討</button><button class="filter" type="button" data-filter="membership" aria-pressed="false">会員制度</button><button class="filter" type="button" data-filter="onboarding" aria-pressed="false">導入準備</button><button class="filter" type="button" data-filter="integration" aria-pressed="false">API連携</button><button class="filter" type="button" data-filter="operations" aria-pressed="false">運用・普及</button><button class="filter" type="button" data-filter="support" aria-pressed="false">サポート</button></nav>
+    </section>
+
+    <div class="results-bar" id="faq-area">
+      <span id="result-count" role="status" aria-live="polite">30件を表示</span>
+      <button class="text-button" id="open-all" type="button">すべて開く</button><button class="text-button" id="close-all" type="button">すべて閉じる</button>
+    </div>
+
+    <section class="faq-list" aria-label="機関向けのよくある質問">
+<details class="faq" id="faq-what-is-consortium-membership" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">1. ORCIDコンソーシアム会員とは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>地域または国のコンソーシアムを通じてORCIDへ参加する機関会員です。研究者個人のORCID iD登録とは別の制度で、機関はMember API、Member Portal、導入支援などを利用できます。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：会員制度と特典（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-who-can-join" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">2. どのような機関がコンソーシアムへ加入できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCIDの案内では、コンソーシアム会員の対象は非営利機関および政府機関です。大学、研究機関、助成機関などが参加しています。日本での具体的な適格性は、入会前に日本コンソーシアムへ確認してください。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：加入対象（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-direct-or-consortium" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">3. 直接会員とコンソーシアム会員は何が違いますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>直接会員はORCIDと直接契約し、コンソーシアム会員は地域の代表機関を通じて参加します。コンソーシアム会員には共同体としての支援、Premium相当のアクセス、Affiliation Managerなどの特典があります。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：会員種別の比較（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-membership-benefits" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">4. 加入すると、どのようなメリットがありますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>Member APIによるデータ連携、複数の本番API認証情報、Member Portalのレポート、Affiliation Manager、優先サポート、研修や会員コミュニティへの参加などが主なメリットです。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：会員特典（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-integration-required" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">5. 加入時点でAPI連携システムが完成している必要がありますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>いいえ。加入前に目的や候補システムを整理しておくことは有益ですが、加入時点で完成した連携は必須ではありません。加入後にSandboxで開発・確認を進められます。開発なしでAffiliation Managerから始める方法もあります。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：Integration Guide（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-how-to-join-japan" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">6. ORCID日本コンソーシアムへの入会手続はどう進めますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>日本コンソーシアムの入会案内から最新の入会キットを確認し、所定の機関参加申込書を提出します。提出方法、必要書類、連絡先は更新される可能性があるため、必ず案内ページを確認してください。</p><a class="official-link" href="https://orcid-jp.net/2020/01/16/subscription-apply/" target="_blank" rel="noopener noreferrer">ORCID日本コンソーシアム：入会案内（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-joining-schedule" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">7. いつから加入できますか？ 申込締切はありますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>加入時期、申込締切、年度途中の会費の扱いは、日本コンソーシアムの入会案内で確認してください。希望する開始時期を決め、必要書類の準備を含めて早めに事務局へ相談すると円滑です。</p><a class="official-link" href="https://orcid-jp.net/2020/01/16/subscription-apply/" target="_blank" rel="noopener noreferrer">日本コンソーシアム：最新日程（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-membership-fees" data-category="joining"><summary><span class="question"><span class="category">入会検討</span><span class="question-title">8. 会費はいくらですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>会費・事務手数料は、対象年度、会員区分、コンソーシアムの料金帯などで異なります。最新の入会案内と入会キットを確認し、適用される金額を事務局へお問い合わせください。</p><a class="official-link" href="https://orcid-jp.net/2020/01/16/subscription-apply/" target="_blank" rel="noopener noreferrer">日本コンソーシアム：費用と入会資料（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-legal-entity" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">9. 一つの会員資格で、大学法人内の複数部局を対象にできますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCIDの会員資格は原則として単一の法的主体に適用されます。附属機関、病院、別法人などを同じ範囲に含められるかは組織構造によって異なるため、申込前にコンソーシアム窓口へ確認してください。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：会員資格と料金の考え方（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-api-credentials-count" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">10. 本番用Member API認証情報はいくつ利用できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>コンソーシアム会員は複数の本番用Member APIクライアント認証情報を利用できます。必要数と利用システムを整理し、最新の会員特典および日本コンソーシアムの案内で上限・申請方法を確認してください。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：API認証情報の特典（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-consortium-support" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">11. コンソーシアムからどのような支援を受けられますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>入会手続、オンボーディング、基本的な技術・運用相談、研修、情報共有などの一次支援を受けられます。複雑な技術問題はコンソーシアム代表機関からORCIDの専門チームへエスカレーションされます。</p><a class="official-link" href="https://info.orcid.org/orcid-for-consortia/roles-and-responsiblities/" target="_blank" rel="noopener noreferrer">ORCID公式：コンソーシアムの役割（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-member-portal" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">12. ORCID Member Portalでは何ができますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>会員情報と担当者の管理、Member Report・Integration Reportの閲覧、Affiliation Managerなどを利用できます。利用可能な機能は会員種別と付与された権限によって異なります。</p><a class="official-link" href="https://info.orcid.org/documentation/member-portal/" target="_blank" rel="noopener noreferrer">ORCID公式：Member Portal（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-governance-voting" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">13. 会員はORCIDの運営に参加できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>会員には、ORCID Board選挙での投票や候補者推薦、会員向けイベント・ワーキンググループへの参加など、ガバナンスとコミュニティ活動へ関わる機会があります。</p><a class="official-link" href="https://info.orcid.org/membership/" target="_blank" rel="noopener noreferrer">ORCID公式：会員のその他の特典（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-member-contacts" data-category="membership"><summary><span class="question"><span class="category">会員制度</span><span class="question-title">14. 機関の担当者情報は誰を登録しますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>少なくとも、会員としての主担当者と技術担当者を明確にします。契約、投票、API認証情報、請求、広報などの連絡先を機関内で整理し、異動時にはMember Portalまたは窓口を通じて更新してください。</p><a class="official-link" href="https://info.orcid.org/documentation/member-portal/managing-your-membership-information-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：会員情報の管理（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-first-steps-after-joining" data-category="onboarding"><summary><span class="question"><span class="category">導入準備</span><span class="question-title">15. 加入後、最初に何をすればよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>窓口とのオンボーディング、Member Portal利用者の登録、機関内担当体制の確定、優先ユースケースの選定を行います。その後、Affiliation Managerの利用またはSandboxでのAPI連携に進みます。</p><a class="official-link" href="https://info.orcid.org/documentation/member-portal/" target="_blank" rel="noopener noreferrer">ORCID公式：Member Portalを始める（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-internal-team" data-category="onboarding"><summary><span class="question"><span class="category">導入準備</span><span class="question-title">16. 機関内では、どの部署・担当者が関わるべきですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>目的に応じて、図書館、研究推進・IR、情報システム、人事、教務、広報、法務・情報管理などが関係します。意思決定者、業務担当、システム担当、研究者支援担当の役割を明確にすると進めやすくなります。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：Integration Guide（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-choose-use-case" data-category="onboarding"><summary><span class="question"><span class="category">導入準備</span><span class="question-title">17. どのユースケースから始めるのがよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>目的と実現可能性で優先順位を付けます。例として、認証済みORCID iDの収集、所属情報の付与、研究者情報システムとの同期、研究成果の登録があります。小さく始め、成果を測定して拡張する方法が有効です。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：連携ユースケース（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-no-developer-option" data-category="onboarding"><summary><span class="question"><span class="category">導入準備</span><span class="question-title">18. 開発担当者がいなくてもORCIDを活用できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>はい。コンソーシアム会員限定のAffiliation Managerを使うと、独自のAPI開発なしで、本人の許可を得て所属・学歴・資格・専門活動をORCIDレコードへ追加・更新できます。</p><a class="official-link" href="https://info.orcid.org/affiliation-manager/" target="_blank" rel="noopener noreferrer">ORCID公式：Affiliation Manager（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-privacy-preparation" data-category="onboarding"><summary><span class="question"><span class="category">導入準備</span><span class="question-title">19. 個人情報保護や学内手続では何を確認すべきですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>利用目的、対象者、取得・保存するデータ、アクセストークンの保護、保存期間、委託先、問い合わせ・撤回手順を整理し、機関の規程と法令に基づく確認を行います。研究者には連携の目的と付与する権限を明確に説明します。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/minimum-requirements-for-member-integrations/" target="_blank" rel="noopener noreferrer">ORCID公式：連携の最低要件（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-public-vs-member-api" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">20. Public APIとMember APIの違いは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>Public APIは主に公開情報の検索・取得と認証済みiDの収集に利用します。Member APIでは、本人の許可を得た限定公開情報の読取りや、所属・研究成果などの追加・更新が可能です。</p><a class="official-link" href="https://info.orcid.org/what-is-orcid/services/member-api/" target="_blank" rel="noopener noreferrer">ORCID公式：Member API（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-sandbox" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">21. Sandboxとは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>本番のORCID Registryとは分離されたテスト環境です。認証、権限取得、データの読取り・書込みを架空のテストレコードで確認できます。すべての機関が無料でAPIを試せます。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-and-api-faq/" target="_blank" rel="noopener noreferrer">ORCID公式：Integration and API FAQ（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-production-credentials" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">22. 本番用Member API認証情報はどう申請しますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>まずSandboxで連携を構築し、最低要件を満たしていることを確認します。本番認証情報の発行前に、ORCIDまたはコンソーシアム担当者によるデモとレビューが行われます。申請は会員機関に限られます。</p><a class="official-link" href="https://info.orcid.org/register-a-client-application-production-member-api/" target="_blank" rel="noopener noreferrer">ORCID公式：本番Member API申請（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-minimum-requirements" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">23. ORCID連携の最低要件は何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>OAuthによる認証済みiDの収集、適切なリダイレクトURIとscope、認証情報・トークンの保護、ORCID表示ガイドラインへの対応などが確認されます。詳細は最新の最低要件を参照し、Sandboxで動作を確認してから本番申請を行います。</p><p class="caution">研究者本人との接続確認には、手入力したiDだけに頼らず、ORCIDの認証・認可画面からiDを取得します。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/minimum-requirements-for-member-integrations/" target="_blank" rel="noopener noreferrer">ORCID公式：Member Integration最低要件（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-oauth-permissions" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">24. 研究者の許可はいつ、どのように取得しますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>連携するシステムからORCIDのOAuth認可画面へ案内し、必要なscopeを提示して本人から許可を得ます。将来使う可能性だけで過剰な権限を求めず、目的に必要な範囲を明確に説明します。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/minimum-requirements-for-member-integrations/" target="_blank" rel="noopener noreferrer">ORCID公式：OAuthと権限の要件（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-vendor-system" data-category="integration"><summary><span class="question"><span class="category">API連携</span><span class="question-title">25. 既存の研究情報システムやベンダー製品を利用できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCID連携機能を持つ製品であれば利用できる場合があります。契約前に、認証済みiDの取得、必要な書込み機能、トークン管理、APIバージョン、機関所有の認証情報へ対応しているかを確認してください。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：Integration Guide（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-affiliation-manager-workflow" data-category="operations"><summary><span class="question"><span class="category">運用・普及</span><span class="question-title">26. Affiliation Managerはどのような流れで使いますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>Member Portalで所属データを入力またはCSV登録し、研究者ごとの許可リンクを送ります。本人が許可すると、機関をSourceとする所属情報がORCIDレコードへ追加されます。更新・削除も管理できます。</p><a class="official-link" href="https://info.orcid.org/documentation/member-portal/member-portal-affiliation-manager-guide/" target="_blank" rel="noopener noreferrer">ORCID公式：Affiliation Manager Guide（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-source-and-trust" data-category="operations"><summary><span class="question"><span class="category">運用・普及</span><span class="question-title">27. 機関がORCIDレコードへ情報を追加する意義は何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>機関が追加した所属情報には、その機関がSourceとして表示されます。研究者本人の自己申告とは異なる由来が明示され、他のシステムが情報の出所を判断しやすくなります。</p><a class="official-link" href="https://info.orcid.org/what-is-orcid/services/member-api/" target="_blank" rel="noopener noreferrer">ORCID公式：Member APIで情報を追加する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-member-reports" data-category="operations"><summary><span class="question"><span class="category">運用・普及</span><span class="question-title">28. 導入効果はどのように確認できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>Member PortalのMember ReportとIntegration Reportで、連携したiD数、更新したレコード数などを確認できます。Affiliation Reportでは機関に関係する所属情報も把握できます。</p><a class="official-link" href="https://info.orcid.org/documentation/member-portal/member-reporting/" target="_blank" rel="noopener noreferrer">ORCID公式：Member Reporting Guide（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-researcher-communication" data-category="operations"><summary><span class="question"><span class="category">運用・普及</span><span class="question-title">29. 研究者への周知では何を伝えるべきですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>なぜiDを収集・連携するのか、研究者と機関の利点、求める権限、公開範囲は本人が管理できること、問い合わせ先を明確にします。手入力ではなく「ORCIDで接続」する手順を案内してください。</p><a class="official-link" href="https://info.orcid.org/documentation/integration-guide/minimum-requirements-for-member-integrations/" target="_blank" rel="noopener noreferrer">ORCID公式：利用者への説明要件（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-where-to-get-support" data-category="support"><summary><span class="question"><span class="category">サポート</span><span class="question-title">30. 入会、運用、技術的な問題はどこへ相談しますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>日本コンソーシアム会員は、まずコンソーシアムの窓口へ相談します。基本的な質問は地域の支援担当が対応し、複雑なAPI障害などは必要に応じてORCID Supportへ引き継がれます。担当者変更や退会も早めに窓口へ連絡してください。</p><a class="official-link" href="https://orcid-jp.net/contact/" target="_blank" rel="noopener noreferrer">ORCID日本コンソーシアム：お問い合わせ（外部サイト）</a></div></details>
+    </section>
+
+
+    <div class="no-results" id="no-results"><strong>該当するFAQが見つかりませんでした。</strong><span>短い言葉に変えるか、カテゴリを「すべて」に戻してお試しください。</span></div>
+
+    <aside class="help-panel"><div><h2>個別の相談が必要ですか？</h2><p>入会・導入・技術支援については、ORCID日本コンソーシアム窓口へお問い合わせください。</p><p><a style="color:white" href="https://support.orcid.org/hc/en-us" target="_blank" rel="noopener noreferrer">ORCID公式Help Center（英語）</a> · <a style="color:white" href="https://info.orcid.org/documentation/" target="_blank" rel="noopener noreferrer">機関連携ドキュメント（英語）</a></p></div><a class="primary-link" href="https://orcid-jp.net/contact/" target="_blank" rel="noopener noreferrer">日本コンソーシアムへ問い合わせる</a></aside>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><p>本FAQは機関担当者向けの一般案内です。費用、日程、契約条件、利用可能な機能は変更されることがあります。必ずORCIDおよびORCID日本コンソーシアムの最新案内をご確認ください。ORCID®はORCID, Inc.の商標です。</p><p>既存のFAQ原稿をもとに2026年10月27日に再作成。公式リンク先の仕様・条件を優先してください。外部リンクは新しいタブで開きます。</p></div>
+  </footer>
+
+  <script>
+    (() => {
+      const search = document.querySelector('#faq-search');
+      const clear = document.querySelector('#clear-search');
+      const filters = [...document.querySelectorAll('.filter')];
+      const items = [...document.querySelectorAll('.faq')];
+      const count = document.querySelector('#result-count');
+      const noResults = document.querySelector('#no-results');
+      const closeAll = document.querySelector('#close-all');
+      let activeCategory = 'all';
+
+      const normalize = value => value.toLocaleLowerCase('ja').normalize('NFKC').replace(/\s+/g, ' ').trim();
+
+      function updateResults() {
+        const query = normalize(search.value);
+        let visible = 0;
+        items.forEach(item => {
+          const inCategory = activeCategory === 'all' || item.dataset.category === activeCategory;
+          const matchesQuery = !query || query.split(' ').every(word => normalize(item.textContent).includes(word));
+          item.hidden = !(inCategory && matchesQuery);
+          if (!item.hidden) visible += 1;
+        });
+        count.textContent = query || activeCategory !== 'all' ? `${visible}件が該当` : `${visible}件を表示`;
+        noResults.style.display = visible ? 'none' : 'block';
+        clear.style.display = search.value ? 'grid' : 'none';
+      }
+
+      updateResults();
+      search.addEventListener('input', updateResults);
+      search.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          search.value = '';
+          updateResults();
+        }
+      });
+      clear.addEventListener('click', () => {
+        search.value = '';
+        search.focus();
+        updateResults();
+      });
+      filters.forEach(button => button.addEventListener('click', () => {
+        activeCategory = button.dataset.filter;
+        filters.forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === button)));
+        updateResults();
+      }));
+      document.querySelector('#open-all').addEventListener('click', () => items.filter(item => !item.hidden).forEach(item => { item.open = true; }));
+      closeAll.addEventListener('click', () => items.forEach(item => { item.open = false; }));
+
+      items.forEach(item => item.addEventListener('toggle', () => {
+        // Questions retain stable anchor IDs; opening an item does not alter local-file history.
+      }));
+
+      let target = null;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch {}
+      if (target?.matches('.faq')) {
+        target.open = true;
+        setTimeout(() => target.scrollIntoView({ block: 'start' }), 0);
+      }
+    })();
+  </script>
+</body>
+</html>

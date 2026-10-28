@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ORCID iDを取得した方のための、はじめの一歩と困ったときの案内です。質問を検索するか、カテゴリから選んでください。">
+  <meta name="color-scheme" content="light">
+  <title>ORCID iD 個人向けFAQ</title>
+  <style>
+    :root {
+      --orcid: #a6ce39;
+      --orcid-dark: #527c00;
+      --orcid-pale: #f2f8e7;
+      --ink: #17221b;
+      --muted: #58645d;
+      --line: #dfe6e1;
+      --paper: #ffffff;
+      --wash: #f6f8f6;
+      --navy: #183d35;
+      --focus: #1f6feb;
+      --danger: #9e3c2f;
+      --shadow: 0 18px 45px rgba(20, 45, 35, .10);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.25rem; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    a { color: #376100; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 99;
+      left: 1rem;
+      top: -5rem;
+      padding: .6rem 1rem;
+      color: white;
+      background: var(--navy);
+      border-radius: 0 0 8px 8px;
+    }
+    .skip-link:focus { top: 0; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: var(--navy);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -8rem;
+      top: -10rem;
+      width: 32rem;
+      height: 32rem;
+      border: 5rem solid rgba(166, 206, 57, .12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-inner, .page, .footer-inner {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 4.25rem 0 5.4rem;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      margin: 0 0 1rem;
+      color: #eaf4d5;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .id-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      color: var(--navy);
+      background: var(--orcid);
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-style: italic;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.15rem, 6vw, 4.6rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin: 1.3rem 0 0;
+      color: #dbe7e2;
+      font-size: clamp(1rem, 2.4vw, 1.22rem);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem 1.3rem;
+      margin-top: 1.6rem;
+      color: #bfcfc8;
+      font-size: .85rem;
+    }
+
+    .page { margin-top: -2.2rem; padding-bottom: 5rem; position: relative; z-index: 2; }
+    .important {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .important-item { background: var(--paper); padding: 1.45rem 1.5rem; }
+    .important-label {
+      display: block;
+      color: var(--orcid-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .important-item strong { display: block; margin-top: .25rem; font-size: 1rem; line-height: 1.5; }
+
+    .toolbox {
+      margin-top: 2rem;
+      padding: 1.4rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .search-wrap { position: relative; }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      translate: 0 -50%;
+      color: var(--muted);
+      font-size: 1.15rem;
+      pointer-events: none;
+    }
+    #faq-search {
+      width: 100%;
+      height: 3.45rem;
+      padding: 0 3.2rem 0 2.8rem;
+      color: var(--ink);
+      background: #fbfcfb;
+      border: 1px solid #bac8c0;
+      border-radius: 12px;
+      font: inherit;
+      font-size: 1rem;
+    }
+    #faq-search::placeholder { color: #707d75; }
+    #clear-search {
+      position: absolute;
+      right: .65rem;
+      top: 50%;
+      translate: 0 -50%;
+      display: none;
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.35rem;
+    }
+    #clear-search:hover { background: #e9eeeb; }
+    .filter-label { margin: 1rem 0 .55rem; color: var(--muted); font-size: .82rem; font-weight: 700; }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .filter {
+      padding: .48rem .82rem;
+      color: #30423a;
+      background: white;
+      border: 1px solid #bdc9c2;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .filter:hover { border-color: var(--orcid-dark); }
+    .filter[aria-pressed="true"] { color: white; background: var(--navy); border-color: var(--navy); }
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 1.15rem 0 .75rem;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .text-button {
+      padding: .2rem;
+      color: #376100;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: .2em;
+    }
+
+    .faq-list { display: grid; gap: .75rem; }
+    details.faq {
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    details.faq[open] { border-color: #aac66a; box-shadow: 0 8px 24px rgba(35, 60, 48, .07); }
+    details.faq[hidden] { display: none; }
+    summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 2rem;
+      align-items: center;
+      gap: .8rem;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { background: #fbfcf8; }
+    .question { min-width: 0; }
+    .category {
+      display: inline-block;
+      margin: 0 0 .22rem;
+      color: var(--orcid-dark);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .question-title { display: block; font-size: 1rem; font-weight: 750; line-height: 1.55; }
+    .toggle {
+      display: grid;
+      place-items: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      color: var(--navy);
+      background: var(--orcid-pale);
+      border-radius: 50%;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .toggle::before { content: "+"; }
+    details[open] .toggle::before { content: "−"; }
+    .answer { padding: .1rem 3.9rem 1.25rem 1.1rem; color: #37463e; }
+    .answer p { margin: .55rem 0; }
+    .answer ul { margin: .45rem 0; padding-left: 1.4rem; }
+    .answer li + li { margin-top: .25rem; }
+    .official-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      margin-top: .35rem;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .official-link::after { content: "↗"; text-decoration: none; }
+    .caution {
+      margin-top: .7rem !important;
+      padding: .68rem .8rem;
+      color: #71352d;
+      background: #fff5f1;
+      border-left: 4px solid #d17462;
+      border-radius: 4px 8px 8px 4px;
+      font-size: .92rem;
+    }
+    .no-results {
+      display: none;
+      padding: 2.3rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px dashed #b8c4bd;
+      border-radius: 14px;
+    }
+    .no-results strong { display: block; margin-bottom: .3rem; color: var(--ink); }
+
+    .help-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+      padding: 1.7rem;
+      color: white;
+      background: var(--navy);
+      border-radius: var(--radius);
+    }
+    .help-panel h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+    .help-panel p { margin: 0; color: #cbd9d3; }
+    .primary-link {
+      display: inline-block;
+      padding: .72rem 1rem;
+      color: #142d26;
+      background: var(--orcid);
+      border-radius: 9px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .primary-link:hover { background: #b5db4c; }
+
+    footer { color: #66736c; background: #edf1ee; border-top: 1px solid var(--line); }
+    .footer-inner { padding: 1.6rem 0 2rem; font-size: .8rem; }
+    .footer-inner p { margin: .2rem 0; }
+
+    @media (max-width: 760px) {
+      .hero-inner { padding: 3rem 0 4.4rem; }
+      .important { grid-template-columns: 1fr; }
+      .important-item { padding: 1.05rem 1.15rem; }
+      .toolbox { padding: 1rem; }
+      .answer { padding-right: 1.1rem; }
+      .help-panel { grid-template-columns: 1fr; }
+      .primary-link { text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .hero { color: black; background: white; border-bottom: 2px solid #222; }
+      .hero-inner { padding: 1rem 0; }
+      .hero-copy, .hero-meta { color: #333; }
+      .id-mark { border: 1px solid #555; }
+      .page { margin-top: 1rem; }
+      .toolbox, .results-bar, .help-panel, .skip-link { display: none !important; }
+      .important { box-shadow: none; }
+      details.faq { break-inside: avoid; }
+      details.faq:not([open]) > .answer { display: block; }
+      .toggle { display: none; }
+      .official-link::after { content: " (" attr(href) ")"; font-weight: 400; }
+    }
+  .audience-nav{display:flex;flex-wrap:wrap;gap:1rem;margin:1.4rem 0 0}.audience-nav a{color:#fff}.answer{overflow-wrap:anywhere}[hidden]{display:none!important}@media print{.audience-nav{display:none!important}.faq[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#faq-area">FAQへ移動</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="id-mark" aria-hidden="true">iD</span> Record holder guide</p>
+      <h1>ORCID iD<br>個人向けFAQ</h1>
+      <p class="hero-copy">ORCID iDを取得した方のための、はじめの一歩と困ったときの案内です。質問を検索するか、カテゴリから選んでください。</p>
+      <div class="hero-meta">
+        <span>対象：ORCID iD保有者・取得を検討中の方</span>
+        <span>全30問</span>
+        <span>再作成：2026年10月27日</span>
+      </div>
+<p class="audience-nav"><a href="orcid-institution-faq-ja.html">機関向けFAQを見る →</a> <a href="index.html">FAQトップ</a></p>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+    <section class="important" aria-label="最初に覚えておきたい3点"><div class="important-item"><span class="important-label">一人に一つのiD</span><strong>ORCID iDは一人につき一つ。所属が変わっても同じiDを使います。</strong></div><div class="important-item"><span class="important-label">アクセス手段を確保</span><strong>個人メールなど、長く使える予備のメールアドレスも登録しましょう。</strong></div><div class="important-item"><span class="important-label">復旧を先に試す</span><strong>ログインできなくても、新しいiDを作る前にアカウント復旧を試します。</strong></div></section>
+
+    <section class="toolbox" aria-label="FAQの検索と絞り込み">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label for="faq-search" class="visually-hidden">FAQを検索</label>
+        <input id="faq-search" type="search" placeholder="例：パスワード、論文、公開範囲" autocomplete="off">
+        <button id="clear-search" type="button" aria-label="検索語を消去">×</button>
+      </div>
+      <p class="filter-label">カテゴリで絞り込む</p>
+      <nav class="filters" aria-label="FAQカテゴリ"><button class="filter" type="button" data-filter="all" aria-pressed="true">すべて</button><button class="filter" type="button" data-filter="start" aria-pressed="false">はじめに</button><button class="filter" type="button" data-filter="login" aria-pressed="false">ログイン</button><button class="filter" type="button" data-filter="account" aria-pressed="false">アカウント</button><button class="filter" type="button" data-filter="record" aria-pressed="false">レコード管理</button><button class="filter" type="button" data-filter="connect" aria-pressed="false">外部連携</button><button class="filter" type="button" data-filter="trouble" aria-pressed="false">トラブル</button></nav>
+    </section>
+
+    <div class="results-bar" id="faq-area">
+      <span id="result-count" role="status" aria-live="polite">30件を表示</span>
+      <button class="text-button" id="open-all" type="button">すべて開く</button><button class="text-button" id="close-all" type="button">すべて閉じる</button>
+    </div>
+
+    <section class="faq-list" aria-label="よくある質問">
+<details class="faq" id="faq-what-is-orcid" data-category="start"><summary><span class="question"><span class="category">はじめに</span><span class="question-title">1. ORCIDとは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCIDは、研究者や研究活動に関わる人を識別するための永続的な識別子です。同姓同名、改姓、所属変更などがあっても、同じORCID iDを使い続けられます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897334-What-is-an-ORCID-iD-and-how-do-I-use-it" target="_blank" rel="noopener noreferrer">ORCID公式：ORCID iDとは（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-who-can-register" data-category="start"><summary><span class="question"><span class="category">はじめに</span><span class="question-title">2. 誰でもORCID iDを取得できますか？ 費用はかかりますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>研究・学術・イノベーション活動に参加する人が無料で登録できます。特定の大学への所属や、研究者としての資格は必要ありません。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897334-What-is-an-ORCID-iD-and-how-do-I-use-it" target="_blank" rel="noopener noreferrer">ORCID公式：ORCID iDとは（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-id-format" data-category="start"><summary><span class="question"><span class="category">はじめに</span><span class="question-title">3. ORCID iDはどのような番号ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ハイフンで区切った16文字の識別子です。最後の文字が数字ではなく大文字のXになる場合もあります。通常は <code>https://orcid.org/0000-0002-1825-0097</code> のようなURLで示します。ORCID iD自体は公開情報です。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897334-What-is-an-ORCID-iD-and-how-do-I-use-it" target="_blank" rel="noopener noreferrer">ORCID公式：iDの使い方（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-first-steps" data-category="start"><summary><span class="question"><span class="category">はじめに</span><span class="question-title">4. 取得後、最初に何をすればよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>まずメールアドレスを確認（verify）し、現在の所属、氏名の別表記、予備のメールアドレス、主な研究成果を追加するとよいでしょう。各項目の公開範囲も確認してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/18498712201239-Getting-started-with-your-ORCID-record" target="_blank" rel="noopener noreferrer">ORCID公式：はじめの設定（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-one-person-one-id" data-category="start"><summary><span class="question"><span class="category">はじめに</span><span class="question-title">5. 所属大学が変わったら、新しいORCID iDが必要ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>必要ありません。ORCID iDは所属機関ではなく個人に付与されるため、異動・転職・退職後も同じiDを使います。原則として一人につき一つです。</p><p class="caution"><strong>重要：</strong>所属変更やログイン不能を理由に、新しいiDを作成しないでください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897334-What-is-an-ORCID-iD-and-how-do-I-use-it" target="_blank" rel="noopener noreferrer">ORCID公式：ORCID iDとは（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-sign-in" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">6. ORCIDにログインするにはどうすればよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>登録済みメールアドレス、16桁のORCID iD、または完全なORCID URLのいずれかと、パスワードを使ってログインできます。あらかじめ連携済みなら機関アカウントも利用できます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006971613-Sign-into-ORCID" target="_blank" rel="noopener noreferrer">ORCID公式：ログイン方法（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-forgot-password" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">7. パスワードを忘れました。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p><a href="https://orcid.org/reset-password" target="_blank" rel="noopener noreferrer">パスワード再設定ページ</a>で、登録済みのメールアドレスを入力します。メールが届かない場合は迷惑メールフォルダを確認し、登録した可能性のある別のメールも試してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006971613-Sign-into-ORCID" target="_blank" rel="noopener noreferrer">ORCID公式：ログイン方法（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-forgot-id" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">8. 自分のORCID iDを忘れました。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>パスワード再設定画面の「ORCID iDを忘れた」案内から、登録済みメールアドレスを入力して確認します。公開レコードを氏名で検索する方法もありますが、本人確認には登録メールによる回復が確実です。</p><a class="official-link" href="https://support.orcid.org/hc/en-us" target="_blank" rel="noopener noreferrer">ORCID公式：Help Center（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-forgot-email" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">9. 登録したメールアドレスが分かりません。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCID iDとパスワードが分かる場合は、iDをユーザー名としてログインできます。パスワードも不明なら、現在使える個人・勤務先メールで再設定を試し、それでも見つからない場合はORCID Supportへ問い合わせます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/requests/new" target="_blank" rel="noopener noreferrer">ORCID公式：アカウント復旧・問い合わせ（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-lost-email-access" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">10. 前の大学のメールが使えず、ログインできません。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ORCID iDとパスワードが分かれば、使えなくなったメールの代わりにiDを入力してログインできます。両方とも分からない場合はORCID Supportに復旧を依頼してください。</p><p class="caution"><strong>新しいORCID iDは作らないでください。</strong>既存レコードの復旧を優先します。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/requests/new" target="_blank" rel="noopener noreferrer">ORCID公式：アカウント復旧・問い合わせ（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-institution-signin" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">11. 大学のアカウントでログインできますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>対応機関で、ORCIDレコードと機関アカウントを連携済みなら利用できます。初回は既存のORCID認証情報で対応付けます。機関ログインに失敗する場合は、所属機関のサポート窓口へ相談してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006894394-Sign-into-ORCID-using-your-institutional-account" target="_blank" rel="noopener noreferrer">ORCID公式：機関アカウントでログイン（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-two-factor" data-category="login"><summary><span class="question"><span class="category">ログイン</span><span class="question-title">12. 二要素認証（2FA）とは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>パスワードに加え、認証アプリが作る6桁コードを使う任意のセキュリティ機能です。有効化したら、端末を失った場合に備えてリカバリーコードを安全な場所へ保存してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006971673-Secure-your-account-with-two-factor-authentication" target="_blank" rel="noopener noreferrer">ORCID公式：二要素認証（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-email-addresses" data-category="account"><summary><span class="question"><span class="category">アカウント</span><span class="question-title">13. メールアドレスは大学のものだけでよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>大学メールに加え、長く使える個人メールなど、複数の有効なメールアドレスを登録することを推奨します。異動や退職後にアクセスを失うリスクを減らせます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/18498712201239-Getting-started-with-your-ORCID-record" target="_blank" rel="noopener noreferrer">ORCID公式：予備メールの追加（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-email-public" data-category="account"><summary><span class="question"><span class="category">アカウント</span><span class="question-title">14. 登録したメールアドレスは公開されますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>メールアドレスの公開範囲は初期状態で「Only me（本人のみ）」です。必要に応じて変更できます。ORCID iD自体は常に公開されます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897614-Visibility-settings" target="_blank" rel="noopener noreferrer">ORCID公式：公開範囲（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-visibility" data-category="account"><summary><span class="question"><span class="category">アカウント</span><span class="question-title">15. レコードの情報はすべて一般公開されますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>いいえ。各項目は「Everyone（全員）」「Trusted parties（信頼する関係者）」「Only me（本人のみ）」から公開範囲を選べます。既存項目と、今後追加される項目の既定値は別々に確認してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897614-Visibility-settings" target="_blank" rel="noopener noreferrer">ORCID公式：公開範囲（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-account-settings" data-category="account"><summary><span class="question"><span class="category">アカウント</span><span class="question-title">16. パスワードや通知、言語の設定はどこで変更できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ログイン後の「Account settings」で、パスワード、通知頻度、公開範囲の既定値、二要素認証、言語などを管理できます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897554-Account-settings" target="_blank" rel="noopener noreferrer">ORCID公式：アカウント設定（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-trusted-individual" data-category="account"><summary><span class="question"><span class="category">アカウント</span><span class="question-title">17. 事務担当者や共同研究者にレコード管理を頼めますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>「Trusted individual（信頼する個人）」に指定すると、ORCID iDを持つ人へレコード管理を委任できます。ただし、メール追加、パスワード変更、アカウント削除など本人だけが行える操作もあります。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973613-Add-a-trusted-individual-to-your-account" target="_blank" rel="noopener noreferrer">ORCID公式：Trusted individual（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-what-to-add" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">18. ORCIDレコードには何を登録できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>氏名と別名、所属、学歴・資格、研究成果（Works）、研究費（Funding）、査読、専門活動、ウェブサイトなどを登録できます。すべてを埋める必要はなく、必要な項目から整備できます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006896894-How-do-I-add-information-to-my-record" target="_blank" rel="noopener noreferrer">ORCID公式：情報を追加する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-add-affiliation" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">19. 現在・過去の所属はどう登録しますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>ログイン後、Employment（雇用）やEducation and qualifications（学歴・資格）の各欄で「+ Add」を選びます。候補が表示されたら、できるだけリストから正式な機関名を選びます。過去の所属には終了日を入れます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006894834-Add-employment-information-to-your-ORCID-record" target="_blank" rel="noopener noreferrer">ORCID公式：所属を追加する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-name-variants" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">20. 旧姓、別表記、ローマ字名も登録できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>できます。Published name（表示名）やAlso known as（別名）に、旧姓、イニシャル、異なる言語・文字による表記などを追加すると、研究成果との対応が分かりやすくなります。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/18498712201239-Getting-started-with-your-ORCID-record" target="_blank" rel="noopener noreferrer">ORCID公式：氏名表記を追加する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-add-works" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">21. 論文や研究成果を一つずつ手入力する必要がありますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>必ずしも必要ありません。外部データベースからのインポートが推奨されます。このほか、BibTeX、DOI、PubMed ID、手入力でも追加できます。Worksには論文だけでなく、データセットや会議発表なども登録できます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973133-Add-works-to-your-ORCID-record" target="_blank" rel="noopener noreferrer">ORCID公式：研究成果を追加する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-edit-works" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">22. 登録した研究成果を修正・削除できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>自分が手入力またはBibTeXで追加した項目は編集できます。外部組織が追加した項目は、原則としてその情報源へ修正を依頼します。削除や公開範囲の変更は、レコード上の操作から行えます。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006894754-Edit-works" target="_blank" rel="noopener noreferrer">ORCID公式：研究成果を編集する（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-source" data-category="record"><summary><span class="question"><span class="category">レコード管理</span><span class="question-title">23. 項目に表示される「Source」とは何ですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>その情報をレコードへ追加した人または組織を示します。大学が追加した所属、出版社が追加した論文などは、その組織が情報源として表示されます。情報の由来を判断する手がかりになります。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973893-Trusted-organizations" target="_blank" rel="noopener noreferrer">ORCID公式：Trusted organizations（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-authenticate" data-category="connect"><summary><span class="question"><span class="category">外部連携</span><span class="question-title">24. 論文投稿時に「ORCIDでログイン」と表示されるのはなぜですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>入力された番号ではなく、本人が認証したORCID iDであることを確認するためです。ORCIDの画面でログインすると、出版社などのシステムとiDを正確に結び付けられます。ORCIDのパスワードが相手組織へ渡ることはありません。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897334-What-is-an-ORCID-iD-and-how-do-I-use-it" target="_blank" rel="noopener noreferrer">ORCID公式：iDを認証して使う（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-authorize" data-category="connect"><summary><span class="question"><span class="category">外部連携</span><span class="question-title">25. 「Authorize（認可）」を求められました。許可してよいですか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>画面に表示された組織名と、求められている権限（iDの取得、限定公開情報の読取り、活動情報の追加・更新など）を確認して判断します。信頼できない、または目的が分からない場合は許可せず、相手組織へ確認してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973893-Trusted-organizations" target="_blank" rel="noopener noreferrer">ORCID公式：権限の内容（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-can-org-edit" data-category="connect"><summary><span class="question"><span class="category">外部連携</span><span class="question-title">26. 大学や出版社がレコードを勝手に変更できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>いいえ。外部組織が情報を追加・更新するには、原則として本人の許可が必要です。また、その組織が編集・削除できるのは基本的に自ら追加した項目で、本人や別組織が追加した項目は変更できません。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973893-Trusted-organizations" target="_blank" rel="noopener noreferrer">ORCID公式：Trusted organizations（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-revoke" data-category="connect"><summary><span class="question"><span class="category">外部連携</span><span class="question-title">27. 外部サービスとの連携を解除できますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>できます。Trusted parties（信頼する関係者）の設定で、対象組織のアクセス権を取り消します。再連携する場合は、通常、その組織のシステムから改めて認可します。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006973893-Trusted-organizations" target="_blank" rel="noopener noreferrer">ORCID公式：アクセス権を取り消す（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-duplicate" data-category="trouble"><summary><span class="question"><span class="category">トラブル</span><span class="question-title">28. ORCID iDを二つ作ってしまいました。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>残すレコードへログインし、Account settingsの「Remove a duplicate record」から重複レコードを非推奨化します。ログイン情報が分からない場合は、パスワード再設定またはORCID Supportを利用してください。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006897554-Account-settings" target="_blank" rel="noopener noreferrer">ORCID公式：重複レコードの整理（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-wrong-info" data-category="trouble"><summary><span class="question"><span class="category">トラブル</span><span class="question-title">29. 自分で登録していない、誤った情報があります。</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>まず項目のSource（情報源）を確認します。外部組織が追加した情報は、その組織へ修正を依頼するのが基本です。不要な項目は自身のレコードから削除できますが、正しい情報へ直したい場合は情報源への連絡が適切です。</p><a class="official-link" href="https://support.orcid.org/hc/en-us/articles/360006894754-Edit-works" target="_blank" rel="noopener noreferrer">ORCID公式：項目の編集と削除（外部サイト）</a></div></details>
+
+<details class="faq" id="faq-contact" data-category="trouble"><summary><span class="question"><span class="category">トラブル</span><span class="question-title">30. FAQで解決しない場合は、どこへ問い合わせますか？</span></span><span class="toggle" aria-hidden="true"></span></summary><div class="answer"><p>まずORCID Help Centerで症状を検索します。解決しない場合はORCID Supportの問い合わせフォームを利用してください。機関アカウントでのログイン障害は、所属機関の情報システム担当窓口へ問い合わせます。</p><ul><li>分かる範囲でORCID iD、問題の状況、表示されたエラーを伝えます。</li><li>パスワードや二要素認証コードは誰にも伝えないでください。</li></ul><a class="official-link" href="https://support.orcid.org/hc/en-us/requests/new" target="_blank" rel="noopener noreferrer">ORCID公式：問い合わせフォーム（外部サイト）</a></div></details>
+    </section>
+
+
+    <div class="no-results" id="no-results"><strong>該当するFAQが見つかりませんでした。</strong><span>短い言葉に変えるか、カテゴリを「すべて」に戻してお試しください。</span></div>
+
+    <aside class="help-panel"><div><h2>まだ解決しませんか？</h2><p>ORCID公式Help Centerには、詳しい操作手順と最新の案内があります。</p><p><a style="color:white" href="https://support.orcid.org/hc/en-us" target="_blank" rel="noopener noreferrer">ORCID公式Help Center（英語）</a> · <a style="color:white" href="https://info.orcid.org/documentation/" target="_blank" rel="noopener noreferrer">機関連携ドキュメント（英語）</a></p></div><a class="primary-link" href="https://support.orcid.org/hc/en-us" target="_blank" rel="noopener noreferrer">公式Help Centerを開く</a></aside>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><p>本FAQはORCID iD保有者向けの日本語案内です。サービス仕様や画面表示は変更されることがあります。最新情報は各回答のORCID公式リンクをご確認ください。ORCID®はORCID, Inc.の商標です。</p><p>既存のFAQ原稿をもとに2026年10月27日に再作成。公式リンク先の仕様・条件を優先してください。外部リンクは新しいタブで開きます。</p></div>
+  </footer>
+
+  <script>
+    (() => {
+      const search = document.querySelector('#faq-search');
+      const clear = document.querySelector('#clear-search');
+      const filters = [...document.querySelectorAll('.filter')];
+      const items = [...document.querySelectorAll('.faq')];
+      const count = document.querySelector('#result-count');
+      const noResults = document.querySelector('#no-results');
+      const closeAll = document.querySelector('#close-all');
+      let activeCategory = 'all';
+
+      const normalize = value => value.toLocaleLowerCase('ja').normalize('NFKC').replace(/\s+/g, ' ').trim();
+
+      function updateResults() {
+        const query = normalize(search.value);
+        let visible = 0;
+        items.forEach(item => {
+          const inCategory = activeCategory === 'all' || item.dataset.category === activeCategory;
+          const matchesQuery = !query || query.split(' ').every(word => normalize(item.textContent).includes(word));
+          item.hidden = !(inCategory && matchesQuery);
+          if (!item.hidden) visible += 1;
+        });
+        count.textContent = query || activeCategory !== 'all' ? `${visible}件が該当` : `${visible}件を表示`;
+        noResults.style.display = visible ? 'none' : 'block';
+        clear.style.display = search.value ? 'grid' : 'none';
+      }
+
+      updateResults();
+      search.addEventListener('input', updateResults);
+      search.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          search.value = '';
+          updateResults();
+        }
+      });
+      clear.addEventListener('click', () => {
+        search.value = '';
+        search.focus();
+        updateResults();
+      });
+      filters.forEach(button => button.addEventListener('click', () => {
+        activeCategory = button.dataset.filter;
+        filters.forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === button)));
+        updateResults();
+      }));
+      document.querySelector('#open-all').addEventListener('click', () => items.filter(item => !item.hidden).forEach(item => { item.open = true; }));
+      closeAll.addEventListener('click', () => items.forEach(item => { item.open = false; }));
+
+      items.forEach(item => item.addEventListener('toggle', () => {
+        // Questions retain stable anchor IDs; opening an item does not alter local-file history.
+      }));
+
+      let target = null;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch {}
+      if (target?.matches('.faq')) {
+        target.open = true;
+        setTimeout(() => target.scrollIntoView({ block: 'start' }), 0);
+      }
+    })();
+  </script>
+</body>
+</html>
