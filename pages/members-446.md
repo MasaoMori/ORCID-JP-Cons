@@ -1,6 +1,6 @@
 ---
 layout: page
-title: コンソーシアム参加機関
+title: 現参加機関
 date: '2023-09-26'
 permalink: /members/
 original_url: https://orcid-jp.net/members/

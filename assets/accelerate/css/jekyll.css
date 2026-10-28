@@ -26,6 +26,8 @@ h1,h2,h3,h4,h5,h6 { font-family: inherit; line-height: 1.5; }
 #secondary .widget-title { font-size: 22px; border-bottom: 2px solid #77cc6d; padding-bottom: 8px; margin-bottom: 14px; }
 #secondary .widget li a { color: #555; }
 #secondary .widget li a:hover { color: #327d29; }
+#secondary .sidebar-group-title { color: #444; font-weight: 700; }
+#secondary .widget li a[aria-current="page"] { color: #327d29; font-weight: 700; }
 .home-posts { margin-top: 8px; }
 .home-posts > h2 { font-size: 24px; border-bottom: 2px solid #77cc6d; margin-bottom: 20px; padding-bottom: 8px; }
 .news-item { border-bottom: 1px solid #eaeaea; margin-bottom: 22px; padding-bottom: 16px; }

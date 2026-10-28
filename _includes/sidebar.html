@@ -1,7 +1,7 @@
 <aside id="secondary" aria-label="サイドバー">
   <section class="widget widget_pages">
     <h2 class="widget-title">{{ site.accelerate.sidebar_title | default: 'サイト案内' | escape }}</h2>
-    <ul>{% if site.data.navigation.primary.size > 0 %}{% include sidebar-items.html items=site.data.navigation.primary %}{% else %}{% include auto-navigation.html %}{% endif %}</ul>
+    <ul>{% if site.data.navigation.sidebar.size > 0 %}{% include sidebar-items.html items=site.data.navigation.sidebar %}{% else %}{% include auto-navigation.html %}{% endif %}</ul>
   </section>
   {% if site.posts.size > 0 %}
   <section class="widget">

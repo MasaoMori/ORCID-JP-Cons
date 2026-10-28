@@ -7,13 +7,34 @@
 <title>ORCID FAQ｜個人・機関向け</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f6f8f6;color:#17221b;font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}main{max-width:1000px;margin:auto;padding:64px 24px}header{border-top:6px solid #a6ce39;padding-top:24px}header p{color:#58645d;max-width:700px}h1{font-size:clamp(30px,6vw,48px);margin:0}h2{font-size:24px;color:#183d35;margin-top:0}.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:36px 0}article{background:white;padding:30px;border:1px solid #dfe6e1;border-radius:18px;box-shadow:0 10px 30px #183d3509}article p{color:#58645d}a{color:#376100;text-underline-offset:4px}a:focus-visible{outline:3px solid #1f6feb;outline-offset:5px}.button{display:inline-block;background:#183d35;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700}.tag{display:block;color:#527c00;font-size:14px;font-weight:700;margin-bottom:12px}footer{font-size:14px;color:#58645d;border-top:1px solid #dfe6e1;padding-top:20px}@media(max-width:650px){main{padding:32px 18px}.cards{grid-template-columns:1fr}article{padding:24px}}
+.consortium-faq{margin:40px 0;overflow-wrap:anywhere}.consortium-faq h3{font-size:20px;color:#183d35;margin:32px 0 14px}.consortium-faq p{margin:0 0 20px}
 </style>
 </head>
 <body><main>
-<header><p>ORCID · よくある質問</p><h1>あなたに合ったFAQへ</h1><p>ORCIDを使い始めた方と、導入・運用を進める機関担当者のための日本語ガイドです。各30問を、キーワードとカテゴリから探せます。</p></header>
+<header><p>ORCID · よくある質問</p><h1>ORCID FAQ</h1><p>ORCIDを使い始めた方と、導入・運用を進める機関担当者のための日本語ガイドです。各30問を、キーワードとカテゴリから探せます。</p></header>
 <section class="cards" aria-label="対象別FAQ">
-<article><span class="tag">個人向け · 30問</span><h2>ORCID iDを使う方へ</h2><p>ログイン、メールアドレス、公開範囲、所属・論文の登録、外部サービスとの連携、困ったときの対応。</p><a class="button" href="orcid-individual-faq-ja.html">個人向けFAQを開く →</a></article>
-<article><span class="tag">機関向け · 30問</span><h2>コンソーシアムの機関担当者へ</h2><p>入会検討、会員制度、導入準備、API連携、Affiliation Manager、運用・普及、サポート。</p><a class="button" href="orcid-institution-faq-ja.html">機関向けFAQを開く →</a></article>
+<article><span class="tag">個人向け · 30問</span><h2>ORCID iDを使う方へ</h2><p>ログイン、メールアドレス、公開範囲、所属・論文の登録、外部サービスとの連携、困ったときの対応。</p><a class="button" href="orcid-individual-faq-ja.html" target="_blank" rel="noopener noreferrer">個人向けFAQを開く →</a></article>
+<article><span class="tag">機関向け · 30問</span><h2>コンソーシアムの機関担当者へ</h2><p>入会検討、会員制度、導入準備、API連携、Affiliation Manager、運用・普及、サポート。</p><a class="button" href="orcid-institution-faq-ja.html" target="_blank" rel="noopener noreferrer">機関向けFAQを開く →</a></article>
+</section>
+<section class="consortium-faq" aria-labelledby="consortium-faq-title">
+<!--- <h2 id="consortium-faq-title">コンソーシアムについて</h2> --->
+<h2 id="コンソーシアムメンバーになるには">コンソーシアムメンバーになるには？</h2>
+
+<p>　「<a href="../2020/01/16/subscription-apply/">コンソーシアム入会機関募集</a>」をごらんください。なお、ORCID日本コンソーシアムへの参加は、AXIESの会員機関でなくても行えます。</p>
+
+<h2 id="自機関の研究者データベースや機関リポジトリとorcidを連携するには">自機関の研究者データベースや機関リポジトリとORCIDを連携するには？</h2>
+
+<p>　お使いの研究者データベースや機関リポジトリから、ORCIDの情報の更新を行いたい場合は、ORCIDのMember APIの利用が必要になります。ORCID日本コンソーシアムの会員は、Member APIのすべての機能を用いることができます（機能の詳細は、一覧表を参照してください）。 お使いのアプリケーションが<a href="https://info.orcid.org/vendors-and-service-providers/orcid-certified-service-providers-list/">ORCIDのCSP(Certified Service Provider)一覧</a>に掲載されている場合、<a href="https://info.orcid.org/register-a-client-application-production-member-api/">Member APIの利用申請</a>を行っていただければ、特別な手続きなしですぐにMember APIを用いることができます。</p>
+
+<p>　お使いのアプリケーションがCSP一覧に掲載されていない場合、アプリケーションの運用開始前に、上述のMember APIの利用申請に加えて、ORCIDの運営スタッフ、もしくはORCID日本コンソーシアムによる実装レビューが必要になります。このレビューでは、<a href="https://info.orcid.org/documentation/integration-guide/minimum-requirements-for-member-integrations/">ORCIDの実装の最低要件</a>（<a href="https://docs.google.com/spreadsheets/d/1J7dD-LEOXuvtG85hEr8DwVSIn-pua71oXYJtTNMAwLc/edit?usp=sharing">具体的なチェックリスト</a>が公開されています）を満たしているかを、動作デモやスクリーンショットなどで示す必要があります。ORCID日本コンソーシアムでは、実装レビューの対応はもちろん、ORCIDのAPIを用いたアプリケーションの計画や実装について具体的な相談に乗ることができます。アプリケーションの開発と提供を考えている参加機関の方は、まずは<a href="../contact/">ORCID日本コンソーシアムにお声掛けください</a>。</p>
+
+<p>　なお、ORCIDでのログイン機能のみを実装する場合や、ORCIDで公開されている情報のみを読み込む場合は、Public APIを用いることができます。この場合、実装レビューは必要なく、<a href="https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/">APIクライアントの申請</a>のみでAPIを利用することができます。また、ORCIDはMember APIを用いたアプリケーションの開発のために、<a href="https://info.orcid.org/documentation/integration-guide/sandbox-testing-server/">専用のサンドボックス環境</a>を提供しています。</p>
+
+<p>　Member API, Public API, サンドボックス環境のいずれの利用についても、ORCID日本コンソーシアムでご相談に乗りますので、<a href="../contact/">お気軽にお問い合わせください</a>。</p>
+
+<h2 id="orcidのwebapiを使わなければorcidの恩恵は受けられないのですか">ORCIDのWebAPIを使わなければ、ORCIDの恩恵は受けられないのですか？</h2>
+
+<p>　ORCIDの最大の恩恵は、そのWebAPIを用いて、研究者とさまざまな研究活動を自動的に、かつ正確に関連付けられる点にあります。しかし、WebAPIを使えない・WebAPIを用いたサービスを導入する予定がない場合でも、じゅうぶんに恩恵を受けることができます。 ORCIDコンソーシアムの会員は、ORCIDの提供するサービスである<a href="https://info.orcid.org/affiliation-manager/">Affiliation Manager</a>を利用することができます。Affiliation Managerでは、CSVファイルを用いた自機関の研究者へのORCIDの登録依頼や、自機関の研究者のORCIDレコードに対する所属情報の書き込みを行うことができます。これによって、自機関の研究者のORCID、ならびにそれに関連付けられた論文や研究データ、助成金の情報を容易に把握することができるようになります。また、自機関の研究者のORCIDの所属情報を証明することで、その研究者のORCIDレコードの情報の信頼性を高めることができます。</p>
 </section>
 <footer><p>2026年10月27日再作成。各HTMLファイルは単独で閲覧できます。検索はこのブラウザ内で動作し、入力語を外部へ送信しません。公式サイトの情報を読む際はインターネット接続が必要です。</p><p><a href="https://support.orcid.org/hc/en-us">ORCID公式Help Center</a> · <a href="https://orcid-jp.net/">ORCID日本コンソーシアム</a></p></footer>
 </main></body></html>

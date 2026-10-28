@@ -1,6 +1,6 @@
 ---
-layout: post
-title: コンソーシアム入会機関募集
+layout: page
+title: 入会機関募集
 date: '2020-01-16'
 permalink: /2020/01/16/subscription-apply/
 original_url: https://orcid-jp.net/2020/01/16/subscription-apply/

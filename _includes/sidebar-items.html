@@ -1,3 +1,12 @@
+{% assign current_url = page.url | relative_url %}
 {% for item in include.items %}
-<li><a href="{% include url.html url=item.url %}">{{ item.title | escape }}</a>{% if item.children.size > 0 %}<ul>{% include sidebar-items.html items=item.children %}</ul>{% endif %}</li>
+<li>
+  {% if item.url %}
+    {% capture item_url %}{% include url.html url=item.url %}{% endcapture %}
+    <a href="{{ item_url | escape }}"{% if item.new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}{% if current_url == item_url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+  {% else %}
+    <span class="sidebar-group-title">{{ item.title | escape }}</span>
+  {% endif %}
+  {% if item.children.size > 0 %}<ul>{% include sidebar-items.html items=item.children %}</ul>{% endif %}
+</li>
 {% endfor %}
