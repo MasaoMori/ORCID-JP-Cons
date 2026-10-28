@@ -4,9 +4,20 @@
     <ul>{% if site.data.navigation.sidebar.size > 0 %}{% include sidebar-items.html items=site.data.navigation.sidebar %}{% else %}{% include auto-navigation.html %}{% endif %}</ul>
   </section>
   {% if site.posts.size > 0 %}
-  <section class="widget">
-    <h2 class="widget-title">最近のお知らせ</h2>
-    <ul>{% for post in site.posts limit:5 %}<li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>{% endfor %}</ul>
+  <section class="widget widget_yearly_posts">
+    <h2 class="widget-title">年別のお知らせ</h2>
+    {% assign post_years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" | sort: 'name' | reverse %}
+    {% for year in post_years %}
+    <details class="post-year">
+      <summary>{{ year.name }}年（{{ year.items.size }}件）</summary>
+      <ul>
+        {% assign yearly_posts = year.items | sort: 'date' | reverse %}
+        {% for post in yearly_posts %}
+        <li><a href="{{ post.url | relative_url }}"{% if page.url == post.url %} aria-current="page"{% endif %}>{{ post.title | escape }}</a></li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
   </section>
   {% endif %}
   {% if site.accelerate.sidebar_text and site.accelerate.sidebar_text != '' %}
