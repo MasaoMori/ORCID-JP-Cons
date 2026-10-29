@@ -13,4 +13,14 @@ tags: []
 
 
 
-[日本コンソーシアム公式問い合わせGoogle Form](https://docs.google.com/forms/d/e/1FAIpQLSetCHXRrMcyv2rcoqsDk0Rc5D8I3lfI46JZSu9OwxZGQCHkcw/viewform)
+以下のフォームからお問い合わせください。
+
+<iframe
+  class="contact-form"
+  src="https://docs.google.com/forms/d/e/1FAIpQLSetCHXRrMcyv2rcoqsDk0Rc5D8I3lfI46JZSu9OwxZGQCHkcw/viewform?embedded=true"
+  title="ORCID日本コンソーシアム お問い合わせフォーム"
+  width="100%"
+  height="1400">
+</iframe>
+
+フォームが表示されない場合は、<a href="https://docs.google.com/forms/d/e/1FAIpQLSetCHXRrMcyv2rcoqsDk0Rc5D8I3lfI46JZSu9OwxZGQCHkcw/viewform" target="_blank" rel="noopener noreferrer">Googleフォームを別タブで開いてください</a>。
