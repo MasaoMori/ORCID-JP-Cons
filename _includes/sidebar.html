@@ -5,7 +5,7 @@
   </section>
   {% if site.posts.size > 0 %}
   <section class="widget widget_yearly_posts">
-    <h2 class="widget-title">年別のお知らせ</h2>
+    <h2 class="widget-title">投稿一覧</h2>
     {% assign post_years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" | sort: 'name' | reverse %}
     {% for year in post_years %}
     <details class="post-year">
