@@ -9,8 +9,7 @@ categories: []
 tags: []
 ---
 
-[ORCIDとは？](http://orcid-jp.net/wp-content/uploads/2022/05/ORCID-Infographic-Japanese-.pdf)
+それぞれのページ内で説明資料をご覧いただけます。
 
-
-
-[ORCID日本コンソーシアムとは？](http://orcid-jp.net/wp-content/uploads/2022/05/ORCIDコンソーシアム説明資料＿森.pdf)
+- [ORCID iDとは](/orcid-overview/)
+- [ORCID日本コンソーシアムとは？](/consortium-overview/)

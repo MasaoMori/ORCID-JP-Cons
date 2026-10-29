@@ -36,6 +36,7 @@ h1,h2,h3,h4,h5,h6 { font-family: inherit; line-height: 1.5; }
 .entry-content code { font-family: ui-monospace, monospace; font-size: .9em; }
 .entry-content table { display: block; overflow-x: auto; max-width: 100%; }
 .entry-content .contact-form { display: block; width: 100%; max-width: 100%; border: 0; margin: 24px 0; background: var(--wash); }
+.entry-content .pdf-viewer { display: block; width: 100%; height: 80vh; min-height: 480px; max-height: 1100px; border: 1px solid var(--line); margin: 24px 0; background: var(--wash); }
 .entry-content a, .news-item a, .archive-list a { color: var(--link); }
 .entry-title { overflow-wrap: anywhere; }
 #secondary .widget-title { font-size: 22px; border-bottom: 2px solid var(--orcid); padding-bottom: 8px; margin-bottom: 14px; }

@@ -21,38 +21,32 @@ sidebar:
     url: /
   - title: コンソーシアムについて
     children:
-      - title: ORCIDとは？
-        url: /orcidとは？/
+      - title: ORCID iDとは
+        url: /orcid-overview/
+      - title: ORCID日本コンソーシアムとは？
+        url: /consortium-overview/
       - title: 活動実績
         url: /活動実績/
       - title: 現参加機関
         url: /members/
-      - title: 運営委員会
-        url: /コンソーシアム運営委員会/
-      - title: 懇談会参加機関
-        url: /participants/
-      - title: コンソーシアム設立賛同署名のお願い
-        url: /コンソーシアム設立賛同署名のお願い/
   - title: 入会機関募集
     url: /2020/01/16/subscription-apply/
   - title: FAQ
     url: /faq/
     new_tab: true
     children:
-      - title: 個人向けFAQ（HTML版）
+      - title: 個人向けFAQ
         url: /faq/orcid-individual-faq-ja.html
         new_tab: true
-      - title: 機関向けFAQ（HTML版）
+      - title: 機関向けFAQ
         url: /faq/orcid-institution-faq-ja.html
         new_tab: true
   - title: 資料
     children:
       - title: 文書
         url: /文書/
-      - title: Materials
+      - title: 設立までの資料
         url: /materials/
-      - title: フォーラムアンケート
-        url: /forumcomm/
   - title: お問い合わせ
     url: /contact/
 
