@@ -18,6 +18,6 @@ permalink: /2026/11/03/event-announce/
 
 - 報告者: 上田哲史（徳島大学）、宮入暢子（東京科学大学）、田辺浩介（物質・材料研究機構）
 
-- 参加方法: zoom情報にて行います。ORCID日本コンソーシアムSlackの#generalチャンネルをご覧ください。https://orcid-japan.slack.com
+- 参加方法: zoomにて行います。ORCID日本コンソーシアムSlackの#generalチャンネルをご覧ください。https://orcid-japan.slack.com
 
   
